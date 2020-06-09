@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -6,20 +7,32 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyAppState();
+  }
+}
+
+//<MyApp>사용 하면 MyApp에 속해 있는 클래스인것 을 안다.
+class MyAppState extends State<MyApp> {
   var questionIndex = 0;
   //build는 widget실행시 항상 필요함 widget을 리턴해야 하므로
   //widget은 항상 statelesswidget 또는 stateful widget을 가짐
   @override
   Widget build(BuildContext context) {
     void answerQuestion() {
-      questionIndex = questionIndex + 1;
+      setState(() {
+        questionIndex = questionIndex + 1;
+      });
+
       print(questionIndex);
     }
 
     var questions = [
       'What\'s your favorite color?',
-      'What\'s your favorite animal',
+      'What\'s your favorite animal?',
     ];
 
     //context 는 object이다.
@@ -40,7 +53,7 @@ class MyApp extends StatelessWidget {
               onPressed: answerQuestion,
             ),
             RaisedButton(
-              child: Text(questions[questionIndex]),
+              child: Text('Answer 2'),
               onPressed: () {
                 print('Answer 2 Chosen!');
               },
