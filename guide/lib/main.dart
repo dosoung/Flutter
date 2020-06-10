@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
+import './question.dart';
+import './answer.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -11,28 +12,38 @@ class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
 //<MyApp>사용 하면 MyApp에 속해 있는 클래스인것 을 안다.
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+// _ 이 언더바는 private를 의미한다 다른곳에서 사용할 수 없게한다.
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
   //build는 widget실행시 항상 필요함 widget을 리턴해야 하므로
   //widget은 항상 statelesswidget 또는 stateful widget을 가짐
+
+  void _answerQuestion() {
+    setState(() {
+      _questionIndex = _questionIndex + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    void answerQuestion() {
-      setState(() {
-        questionIndex = questionIndex + 1;
-      });
-
-      print(questionIndex);
-    }
-
-    var questions = [
-      'What\'s your favorite color?',
-      'What\'s your favorite animal?',
+    const questions = [
+      {
+        'questionText': 'What\'s your favorite color?',
+        'answers': ['Blue', 'Black', 'White', 'Sky'],
+      },
+      {
+        'questionText': 'What\'s your favorite animal?',
+        'answers': ['Dog', 'Cat', 'Lion', 'Giraffe'],
+      },
+      {
+        'questionText': 'Who\'s your favorit instructor?',
+        'answers': ['Dohyun', 'SOUNG', 'DOSOUNG', 'Hello'],
+      },
     ];
 
     //context 는 object이다.
@@ -45,22 +56,15 @@ class MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text(
-              questions[questionIndex],
+            //Text => Question
+            Question(
+              questions[_questionIndex]['questionText'],
             ),
-            RaisedButton(
-              child: Text('Answer 1 '),
-              onPressed: answerQuestion,
-            ),
-            RaisedButton(
-              child: Text('Answer 2'),
-              onPressed: () {
-                print('Answer 2 Chosen!');
-              },
-            ),
-            RaisedButton(
-                child: Text('Answer 3 '),
-                onPressed: () => {print('Answer 3 Chosen!')}),
+            //dart가 answer키가 가지고 있는 벨류가 어떤 타입인지 모르므로 우리가 리스트라고 말해준다.
+            ...(questions[_questionIndex]['answers'] as List<String>)
+                .map((answer) {
+              return Answer(_answerQuestion, answer);
+            }).toList() //Answer
           ],
         ),
       ),
