@@ -34,13 +34,14 @@ class _UserTransactionsState extends State<UserTransactions> {
     setState(() {
       _userTransactions.add(NewTransaction);
     });
+    print(_userTransactions);
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        NewTransaction(),
+        NewTransaction(_addNewTransaction),
         TransactionList(_userTransactions),
       ],
     );

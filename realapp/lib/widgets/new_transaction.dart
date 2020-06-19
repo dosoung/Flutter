@@ -3,8 +3,12 @@ import './user_transaction.dart';
 
 //입력하고 버튼으로 새로운 트랜잭션 만드는것
 class NewTransaction extends StatelessWidget {
+  final addNewTransaction;
   final titleController = TextEditingController();
   final amountController = TextEditingController();
+
+  NewTransaction(this.addNewTransaction);
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -27,9 +31,11 @@ class NewTransaction extends StatelessWidget {
               // },
             ),
             FlatButton(
-                child: Text('Add Transaction'),
-                textColor: Colors.orange[300],
-                onPressed: () => {}),
+              child: Text('Add Transaction'),
+              textColor: Colors.orange[300],
+              onPressed: () => addNewTransaction(
+                  titleController.text, double.parse(amountController.text)),
+            )
           ],
         ),
       ),
