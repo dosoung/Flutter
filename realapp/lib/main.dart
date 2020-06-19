@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,37 +35,6 @@ class MyHomePage extends StatelessWidget {
                 child: Text('CHART!'), //command > wrap
               ),
             ),
-            Card(
-              elevation: 5,
-              child: Container(
-                margin: EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    TextField(
-                      decoration: InputDecoration(labelText: 'Title'),
-                      controller: titleController,
-                      // onChanged: (String value) => titleInput = value,
-                    ),
-                    TextField(
-                      decoration: InputDecoration(labelText: 'Amount'),
-                      controller: amountController,
-                      // onChanged: (value) {
-                      //   amountInput = value;
-                      // },
-                    ),
-                    FlatButton(
-                      child: Text('Add Transaction'),
-                      textColor: Colors.orange[300],
-                      onPressed: () {
-                        print(titleController.text);
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Column()
           ],
         ));
   }
