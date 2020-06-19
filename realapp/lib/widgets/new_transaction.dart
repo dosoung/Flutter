@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './user_transaction.dart';
 
 //입력하고 버튼으로 새로운 트랜잭션 만드는것
 class NewTransaction extends StatelessWidget {
@@ -26,12 +27,9 @@ class NewTransaction extends StatelessWidget {
               // },
             ),
             FlatButton(
-              child: Text('Add Transaction'),
-              textColor: Colors.orange[300],
-              onPressed: () {
-                print(titleController.text);
-              },
-            ),
+                child: Text('Add Transaction'),
+                textColor: Colors.orange[300],
+                onPressed: () => {}),
           ],
         ),
       ),
