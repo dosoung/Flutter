@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:practice/widgets/new_transaction.dart';
+import 'package:practice/widgets/transaction_list.dart';
+import 'package:practice/widgets/user_transaction.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,7 +25,8 @@ class MyHomePage extends StatelessWidget {
         title: Text('Flutter App'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+//        mainAxisAlignment: MainAxisAlignment.,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
             width: double.infinity,
@@ -32,7 +36,7 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
-          Card(child: Text('List OF TX'))
+          UserTransaction()
         ],
       ),
     );
